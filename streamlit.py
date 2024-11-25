@@ -9,51 +9,47 @@ labels = ["Rendah", "Sedang", "Tinggi"]
 # Custom CSS for modern look and feel
 st.markdown("""
     <style>
-        /* General Layout */
         body {
-            background-color: #121212;  /* Dark background for the app */
-            color: #e0e0e0;  /* Light grey text */
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Arial', sans-serif;
         }
 
         .title {
             font-size: 40px;
             font-weight: bold;
-            color: #FFDE00;  /* Bright yellow for the title */
+            color: #FFDE00;
             text-align: center;
             margin-top: 20px;
         }
 
-        /* Prediction Result Styling */
         .prediction {
             font-size: 28px;
-            color: #32CD32;  /* Green color for positive feedback */
+            color: #32CD32;
             font-weight: bold;
             text-align: center;
             padding: 15px;
             border-radius: 15px;
-            background-color: rgba(0, 255, 0, 0.2); /* Transparent background */
+            background-color: rgba(0, 255, 0, 0.2);
             margin-top: 20px;
         }
 
-        /* Input field labels */
         .input-label {
             font-size: 18px;
-            color: #1E90FF;  /* Bright blue for labels */
+            color: #1E90FF;
             font-weight: bold;
         }
 
-        /* Info box styling */
         .info-box {
-            color: #FFFFFF;  /* White text for readability */
+            color: #FFFFFF;
             padding: 20px;
             border-radius: 15px;
             margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Button Styling */
         .stButton>button {
-            background-color: #FF6347;  /* Red-orange button for interaction */
+            background-color: #FF6347;
             color: white;
             font-size: 18px;
             padding: 15px 30px;
@@ -63,43 +59,40 @@ st.markdown("""
         }
 
         .stButton>button:hover {
-            background-color: #FF4500;  /* Slightly darker on hover */
-            transform: scale(1.1); /* Hover effect */
+            background-color: #FF4500;
+            transform: scale(1.1);
         }
 
-        /* Sidebar Styling */
-        .sidebar .sidebar-content {
-            background-color: #1e1e1e;  /* Dark sidebar background */
-        }
-
-        /* Small Animations */
         .stButton>button:active {
-            transform: scale(0.95);  /* Click effect */
+            transform: scale(0.95);
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Title of the application with custom style
+# Title of the application
 st.markdown('<p class="title">🔮 Stress Level Detection 🔮</p>', unsafe_allow_html=True)
 
-# Info box with more detailed and engaging description
+# Info box with a detailed description
 st.markdown("""
     <div class="info-box">
-        <h5>🔧 Masukkan nilai untuk kelembapan, temperatur, dan jumlah langkah Anda di bawah ini untuk mendapatkan prediksi tingkat stres Anda.</h5>
-        <p>🧠 Model ini dapat memprediksi tingkat stres Anda berdasarkan kelembapan udara, temperatur lingkungan, dan jumlah langkah yang Anda tempuh.</p>
+        <h4>📝 Tentang Prediksi</h4>
+        <p><strong>Kelembaban</strong> - Saat Anda merasa stres, suhu tubuh Anda meningkat, yang memicu kelenjar keringat untuk bekerja. Keringat ini dianggap sebagai Tingkat Kelembaban.</p>
+        <p><strong>Suhu</strong> - Suhu tubuh seseorang saat stres.</p>
+        <p><strong>Jumlah Langkah</strong> - Jumlah langkah yang ditempuh seseorang saat menghadapi situasi stres.</p>
+        <p><strong>Tingkat Stres</strong> - Berdasarkan ketiga faktor di atas, Tingkat Stres Anda akan diprediksi menjadi Tinggi, Sedang, atau Rendah.</p>
     </div>
 """, unsafe_allow_html=True)
 
-# Manual input fields for user to type the values
+# Input fields for user
 humidity = st.text_input("🌫️ Masukkan kelembapan (humidity):", value="50")
 temperature = st.text_input("🌡️ Masukkan temperatur (°C):", value="22")
 step_count = st.text_input("🚶‍♂️ Masukkan jumlah langkah (step count):", value="50")
 
-# Function to convert Celsius to Fahrenheit
+# Convert Celsius to Fahrenheit
 def celsius_to_fahrenheit(celsius):
     return (celsius * 9/5) + 32
 
-# Button to trigger prediction with engaging emoji
+# Prediction button
 if st.button("🔮 Prediksi", key="predict"):
     try:
         # Convert inputs to numeric values
@@ -110,14 +103,14 @@ if st.button("🔮 Prediksi", key="predict"):
         # Prepare input data
         new_data = np.array([[humidity, celsius_to_fahrenheit(temperature), step_count]])
 
-        # Prediction using the model
+        # Predict stress level
         prediction = model.predict(new_data)
-        idx = np.argmax(prediction, axis=1)[0]  # Get the predicted class index
+        idx = np.argmax(prediction, axis=1)[0]
 
-        # Displaying the prediction result with better formatting
+        # Display prediction result
         st.markdown(f'<p class="prediction">Prediksi: <strong>{labels[idx]}</strong></p>', unsafe_allow_html=True)
 
-        # Display information for each label
+        # Provide insights for each stress level
         if idx == 0:
             st.markdown("""
                 <div class="info-box">
