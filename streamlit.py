@@ -91,9 +91,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Manual input fields for user to type the values
-humidity = st.text_input("🌫️ Masukkan kelembapan (humidity):", value="50", help="Kelembapan udara dalam persen")
-temperature = st.text_input("🌡️ Masukkan temperatur (°C):", value="22", help="Temperatur udara dalam derajat Celsius")
-step_count = st.text_input("🚶‍♂️ Masukkan jumlah langkah (step count):", value="5000", help="Jumlah langkah yang telah ditempuh")
+humidity = st.text_input("🌫️ Masukkan kelembapan (humidity):", value="50")
+temperature = st.text_input("🌡️ Masukkan temperatur (°C):", value="22")
+step_count = st.text_input("🚶‍♂️ Masukkan jumlah langkah (step count):", value="50")
 
 # Function to convert Celsius to Fahrenheit
 def celsius_to_fahrenheit(celsius):
