@@ -45,7 +45,9 @@ st.markdown("""
             padding: 5px;
             border-radius: 15px;
             margin-top: 10px;
-            margin-bottom: 10px;
+            padding-left:10px;
+            padding-right:10px;
+            margin-bottom: 30px;
             background-color: rgba(255, 255, 255, 0.1);
         }
 
