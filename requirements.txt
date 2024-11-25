@@ -8,3 +8,4 @@ tensorflow-hub==0.12.0
 tensorflow-intel==2.17.0
 tensorflow-metadata==1.16.1
 tensorflowjs==3.18 
+setuptools>=58.0.0
