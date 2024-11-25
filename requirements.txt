@@ -1,8 +1,7 @@
-streamlit==1.39.0 
+streamlit==1.39.0
 numpy==1.25.2
-tensorflow==2.13.01
+tensorflow==2.17.0  # Choose one version
 tensorboard-data-server==0.7.2
-tensorflow==2.17.0
 tensorflow-datasets==4.9.6
 tensorflow-hub==0.12.0
 tensorflow-intel==2.17.0
