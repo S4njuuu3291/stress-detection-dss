@@ -42,9 +42,10 @@ st.markdown("""
 
         .info-box {
             color: #FFFFFF;
-            padding: 20px;
+            padding: 5px;
             border-radius: 15px;
             margin-top: 10px;
+            margin-bottom: 10px;
             background-color: rgba(255, 255, 255, 0.1);
         }
 
